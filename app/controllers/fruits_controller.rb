@@ -1,6 +1,7 @@
 class FruitsController < ApplicationController
   def index
-    @fruits = Fruit.page(params[:page]).per(10)
+    @q = Fruit.ransack(params[:q])
+    @fruits = @q.result(:distinct => true).page(params[:page]).per(10)
 
     render("fruits/index.html.erb")
   end
