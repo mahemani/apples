@@ -1,6 +1,6 @@
 class FruitsController < ApplicationController
   def index
-    @fruits = Fruit.all
+    @fruits = Fruit.page(params[:page]).per(10)
 
     render("fruits/index.html.erb")
   end
